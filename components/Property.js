@@ -35,6 +35,7 @@ const Property = ({
         <Box>
           <Image
             src={coverPhoto ? coverPhoto.url : DefaultImage}
+            placeholder="blur"
             blurDataURL={DefaultImage}
             width={400}
             height={260}
@@ -52,7 +53,7 @@ const Property = ({
                 {isVerified && <GoVerified />}
               </Box>
               <Text fontWeight="bold" fontSize="lg">
-                AED {price}
+                BDT {price}
                 {rentFrequency && `/${rentFrequency}`}
               </Text>
             </Flex>

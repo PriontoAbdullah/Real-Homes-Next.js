@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import DefaultImage from '../assets/images/house.jpg';
 
 const Banner = ({
   purpose,
@@ -14,7 +15,14 @@ const Banner = ({
 }) => {
   return (
     <Flex flexWrap="wrap" justifyContent="center" alignItems="center" m="10">
-      <Image src={imageUrl} width={500} height={300} alt="banner" />
+      <Image
+        src={imageUrl}
+        placeholder="blur"
+        blurDataURL={DefaultImage}
+        width={500}
+        height={300}
+        alt="banner"
+      />
       <Box p="5">
         <Text color="gray.500" fontSize="sm" fontWeight="medium">
           {purpose}

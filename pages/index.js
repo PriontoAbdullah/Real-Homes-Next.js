@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Button, Flex } from '@chakra-ui/react';
 import Banner from '../components/Banner';
 import Property from '../components/Property';
 import { baseUrl, fetchApi } from '../utils/fetchApi';
@@ -21,6 +21,11 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
           <Property property={property} key={property.id} />
         ))}
       </Flex>
+      <Flex flexWrap="wrap" justifyContent="center" alignItems="center" m="5">
+        <Button fontSize="xl" bg="blue.300" color="white">
+          Load More
+        </Button>
+      </Flex>
       <Banner
         purpose="BUY A HOME"
         title1=" Find, Buy & Own Your"
@@ -35,6 +40,11 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
         {propertiesForSale.map((property) => (
           <Property property={property} key={property.id} />
         ))}
+      </Flex>
+      <Flex flexWrap="wrap" justifyContent="center" alignItems="center" m="5">
+        <Button fontSize="xl" bg="blue.300" color="white">
+          Load More
+        </Button>
       </Flex>
     </Box>
   );
