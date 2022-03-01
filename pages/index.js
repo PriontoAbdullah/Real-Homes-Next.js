@@ -1,9 +1,13 @@
 import { Box, Button, Flex } from '@chakra-ui/react';
+import Link from 'next/link';
+import { useState } from 'react';
 import Banner from '../components/Banner';
 import Property from '../components/Property';
 import { baseUrl, fetchApi } from '../utils/fetchApi';
 
 const Home = ({ propertiesForSale, propertiesForRent }) => {
+  const [counter, setCounter] = useState(9);
+
   return (
     <Box>
       <Banner
@@ -22,8 +26,17 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
         ))}
       </Flex>
       <Flex flexWrap="wrap" justifyContent="center" alignItems="center" m="5">
-        <Button fontSize="xl" bg="blue.300" color="white">
-          Load More
+        <Button
+          fontSize="xl"
+          bg="blue.300"
+          color="white"
+          onClick={() => {
+            setCounter((prevState) => prevState + 3);
+          }}
+        >
+          <Link href={`/?hitsPerPage=${counter}`}>
+            <a>Load More</a>
+          </Link>
         </Button>
       </Flex>
       <Banner
@@ -42,21 +55,32 @@ const Home = ({ propertiesForSale, propertiesForRent }) => {
         ))}
       </Flex>
       <Flex flexWrap="wrap" justifyContent="center" alignItems="center" m="5">
-        <Button fontSize="xl" bg="blue.300" color="white">
-          Load More
+        <Button
+          fontSize="xl"
+          bg="blue.300"
+          color="white"
+          onClick={() => {
+            setCounter((prevState) => prevState + 3);
+          }}
+        >
+          <Link href={`/?hitsPerPage=${counter}`}>
+            <a>Load More</a>
+          </Link>
         </Button>
       </Flex>
     </Box>
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ query }) {
+  const hitsPerPage = query.hitsPerPage || '6';
+
   const propertyForSale = await fetchApi(
-    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=9`
+    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=${hitsPerPage}`
   );
 
   const propertyForRent = await fetchApi(
-    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=9`
+    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=${hitsPerPage}`
   );
 
   return {
